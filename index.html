@@ -1559,73 +1559,67 @@
     <div class="role-back" onclick="showPage('projects')">← Back to Projects</div>
 
     <div class="role-hero">
-      <div class="role-company-label animate">Independent Initiative · 2026</div>
+      <div class="role-company-label animate">Problem Framing · Workflow Design · 2026</div>
       <h1 class="role-title animate">Loan Review App — An Audit Support Tool for Financial Institutions</h1>
     </div>
 
     <div class="role-content">
+
       <div class="project-detail-section animate">
-        <div class="role-section-label">Context</div>
+        <div class="role-section-label">Who is the user</div>
         <div class="role-section-body">
-          <p>During loan audit engagements, review workflows involved extensive manual verification, fragmented documentation across multiple files, and repeated completeness checks performed by different stakeholders.</p>
-          <p>These workflows required auditors to consolidate loan-level data, validate supporting documents, and ensure consistency in credit assessment outputs such as impairment calculations and risk classifications.</p>
+          <p>Junior to mid-level auditors at Indonesian banks and financial institutions — the people who actually do the loan review work. Not the audit partner who signs off, but the associate sitting with 50 loan files, a spreadsheet, and a checklist they repeat from scratch every engagement.</p>
+          <p>They are not technical. They are detail-oriented, time-pressured, and accountable for accuracy. Any tool that slows them down or adds steps gets ignored.</p>
         </div>
       </div>
-
       <div class="project-detail-section animate">
-        <div class="role-section-label">Observation</div>
-        <div>
-          <div class="role-section-body" style="margin-bottom:20px">Beyond financial reporting requirements, the operational workflow revealed inefficiencies affecting audit speed, consistency, and scalability. Key pain points included:</div>
-          <ul class="project-tag-list">
-            <li>Manual completeness checks across loan documentation</li>
-            <li>Repetitive data extraction from unstructured files</li>
-            <li>Inconsistent tracking across review stages</li>
-            <li>Heavy reliance on spreadsheets for credit impairment calculations</li>
-            <li>Fragmented audit evidence and working paper (KKA)</li>
-          </ul>
+        <div class="role-section-label">The problem</div>
+        <div class="role-section-body">
+          <p>I spent four years doing this work at EY. The loan review process was mostly manual: open a file, check if documents were complete, extract numbers into a spreadsheet, calculate impairment, track status in a separate sheet. Then repeat — for every loan, every engagement.</p>
+          <p>The inefficiencies were not hidden. They were just accepted. Completeness checks done twice by different people. Spreadsheets emailed back and forth. No single view of where each loan was in the review cycle. When something went wrong, it was hard to trace back.</p>
         </div>
       </div>
-
       <div class="project-detail-section animate">
-        <div class="role-section-label">System Design</div>
-        <div>
-          <div class="role-section-body" style="margin-bottom:20px">Core workflow components explored:</div>
-          <ul class="project-tag-list">
-            <li>Loan review workflow structuring and stage tracking</li>
-            <li>Document completeness validation framework</li>
-            <li>AI-assisted data extraction from supporting documents</li>
-            <li>DPD staging logic for credit risk classification</li>
-            <li>CKPN / PSAK 71 (IFRS 9) impairment assessment workflow</li>
-            <li>Audit Working Papers (KKA) automated multi-sheet Excel generation</li>
-            <li>Role-based approval hierarchy and review progression tracking</li>
-            <li>Audit trail logging for review accountability</li>
-          </ul>
+        <div class="role-section-label">How I validated it</div>
+        <div class="role-section-body">
+          <p>I did not run user interviews. The validation was four years of doing the work myself. I knew the pain points because I had lived them — the repeated completeness checks, the fragmented KKA files, the PSAK 71 calculations rebuilt from scratch each time.</p>
+          <p>That's a form of validation, but also a limitation. My experience was from one firm. Other banks may run the process differently, and a proper product would need interviews with auditors across multiple institutions before assuming the pain is universal.</p>
         </div>
       </div>
-
       <div class="project-detail-section animate">
-        <div class="role-section-label">Compliance Considerations</div>
-        <div>
-          <ul class="project-tag-list">
-            <li>Role-based access control (RBAC) for audit segregation</li>
-            <li>Multi-tenant architecture for engagement separation</li>
-            <li>Multi-factor authentication (MFA) for secure access</li>
-            <li>Audit trail integrity and traceability requirements</li>
-            <li>Data segregation and confidentiality controls</li>
-          </ul>
+        <div class="role-section-label">Key product decisions</div>
+        <div class="role-section-body">
+          <p><strong>Preserve auditor judgment, reduce manual work.</strong> The goal was never to automate the audit decision. That would be both wrong and unacceptable in a regulated environment. The goal was to remove the repetitive operational steps so auditors could spend more time on actual judgment — assessing credit risk, not chasing missing documents.</p>
+          <p><strong>Built compliance in from the start.</strong> Role-based access, audit trail logging, and data segregation were not afterthoughts. In a regulated environment, these are table stakes. A tool without them would never get past procurement, regardless of how useful it was.</p>
+          <p><strong>Excel output, not a new interface.</strong> Auditors are already comfortable with Excel. Generating structured KKA output in Excel was a deliberate choice to reduce adoption friction — give people something familiar rather than asking them to learn a new system.</p>
+        </div>
+      </div>
+      <div class="project-detail-section animate">
+        <div class="role-section-label">What I decided not to build</div>
+        <div class="role-section-body">
+          <p>A full document management system. The temptation was to build something that ingested all loan files, parsed them automatically, and centralised everything. That would have been technically interesting but practically impossible to deploy — banks have strict data residency requirements and lengthy IT approval processes.</p>
+          <p>I kept the scope to workflow structuring, completeness checks, and impairment calculations. The parts an auditor could use without needing IT sign-off.</p>
+        </div>
+      </div>
+      <div class="project-detail-section animate">
+        <div class="role-section-label">How I'd measure success</div>
+        <div class="role-section-body">
+          <p>If this were a real product in use, the metrics I would track are: time to complete a standard loan review cycle (baseline vs with tool), error rate on completeness checks, number of re-review cycles per engagement, and whether auditors actually use it after the first week.</p>
+          <p>That last one matters most. Tools that get used once and abandoned tell you more than tools that look good in a demo.</p>
         </div>
       </div>
 
       <div class="role-takeaway animate">
-        <div class="role-section-label">Outcome</div>
+        <div class="role-section-label">What I'd do differently</div>
         <div class="role-section-body" style="font-family:var(--sans);font-size:15px;font-weight:400;line-height:1.9;color:#3A3A3A">
-          Following evaluation of enterprise adoption constraints, the initiative was not pursued commercially. The project served as a structured exploration into audit workflow design, operational system thinking, and execution challenges in regulated financial environments.
+          Talk to more auditors before building. My experience at EY was real, but it was one data point. I'd want to sit with auditors at three or four different institutions before committing to a workflow structure. The process probably varies more than I assumed, and a tool built too tightly around one firm's way of working would be hard to generalise.
         </div>
       </div>
+
     </div>
   </div>
 
-  <footer>
+    <footer>
     <div class="footer-inner">
       <div class="footer-logo">N<span>/</span>D</div>
       <ul class="footer-links">
@@ -1645,92 +1639,67 @@
     <div class="role-back" onclick="showPage('projects')">← Back to Projects</div>
 
     <div class="role-hero">
-      <div class="role-company-label animate">Independent Initiative · 2026</div>
+      <div class="role-company-label animate">User Research · Product Design · 2026</div>
       <h1 class="role-title animate">CryptoQuest — Interactive Crypto Learning Platform</h1>
     </div>
 
     <div class="role-content">
+
       <div class="project-detail-section animate">
-        <div class="role-section-label">Context</div>
+        <div class="role-section-label">Who is the user</div>
         <div class="role-section-body">
-          <p>Despite an abundance of crypto educational content, many beginners still struggle to understand how crypto systems actually work. The real problem wasn't a lack of content — it was having no clear path through it — content that assumed prior knowledge, introduced jargon without context, and lacked progression between beginner and intermediate concepts.</p>
+          <p>Adults in their 20s and 30s who have heard about crypto from friends, coworkers, or the news and want to understand it — but every time they try, they end up more confused. They are not looking to trade. They want to understand how it actually works.</p>
+          <p>They've probably tried YouTube videos, Reddit threads, or exchange learning centres. The content exists. But none of it gives them a clear sense of progression — what to learn first, what builds on what, and when they're done with the basics.</p>
         </div>
       </div>
-
       <div class="project-detail-section animate">
-        <div class="role-section-label">Learning System</div>
-        <div>
-          <div class="role-section-body" style="margin-bottom:20px">The platform was structured into three progressive learning levels across 3 levels, 15 modules, and 23 chapters:</div>
-          <div class="impact-grid">
-            <div class="impact-item">
-              <div class="impact-number" style="font-size:24px">Beginner</div>
-              <div class="impact-label">Money systems, Bitcoin, blockchain, wallets, ecosystem</div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-number" style="font-size:24px">Intermediate</div>
-              <div class="impact-label">Ethereum, DeFi, tokenomics, DAOs, NFTs</div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-number" style="font-size:24px">Advanced</div>
-              <div class="impact-label">Scalability, governance, protocol design, Web3</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-detail-section animate">
-        <div class="role-section-label">Product Decisions</div>
+        <div class="role-section-label">The problem</div>
         <div class="role-section-body">
-          <p><strong>Problem-first storytelling</strong> — each chapter began with a real-world problem before introducing technical concepts, helping learners understand why blockchain systems were created before how they work.</p>
-          <p><strong>Interactive over passive</strong> — chapters were designed as screen-by-screen flows combining storytelling, simulations, quizzes, diagrams, and practical exercises.</p>
-          <p><strong>Trust-focused framing</strong> — content included book references, cited sources, and explicit discussion of limitations, keeping things honest rather than hype-driven.</p>
+          <p>The crypto content ecosystem is designed for people who already understand it. Most tutorials assume you know what a wallet is before explaining why it exists. Most explainers jump straight into DeFi without grounding you in what problem it solves.</p>
+          <p>The result is that beginners consume a lot of content, recognise some words, but can't explain how the pieces fit together. That's not a content problem — it's a structure problem.</p>
         </div>
       </div>
-
       <div class="project-detail-section animate">
-        <div class="role-section-label">Technical Stack</div>
-        <div>
-          <ul class="project-tag-list">
-            <li>React 18 + Vite</li>
-            <li>Deployed via Vercel</li>
-            <li>Modular chapter architecture using structured JavaScript objects</li>
-            <li>Local progress persistence via localStorage</li>
-            <li>Interactive simulations via React state management</li>
-            <li>Custom UI without external component libraries</li>
-          </ul>
+        <div class="role-section-label">How I validated it</div>
+        <div class="role-section-body">
+          <p>I spent time in crypto beginner communities on Reddit and Twitter — reading threads where people asked basic questions and noting which ones came up repeatedly. "I understand Bitcoin but nothing after that." "People keep using terms without explaining them." "I don't know where to start."</p>
+          <p>I also drew on my own experience entering the space. The frustration was real and personal, not just observed. What I did not do was structured user interviews or usability testing with real learners. The research was observational and informal, which means the assumptions about what structure should look like were mine, not validated by the people I was designing for.</p>
         </div>
       </div>
-
       <div class="project-detail-section animate">
-        <div class="role-section-label">Outcome</div>
-        <div>
-          <div class="impact-grid">
-            <div class="impact-item">
-              <div class="impact-number">23</div>
-              <div class="impact-label">Complete chapters</div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-number">20+</div>
-              <div class="impact-label">Simulations & interactions</div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-number">Live</div>
-              <div class="impact-label">Deployed on Vercel</div>
-            </div>
-          </div>
+        <div class="role-section-label">Key product decisions</div>
+        <div class="role-section-body">
+          <p><strong>Problem before concept.</strong> Every chapter starts with a real-world problem — inflation, banking failures, settlement delays — before introducing the technical idea that addresses it. The goal was to give learners a reason to care before asking them to understand.</p>
+          <p><strong>Interactive over passive.</strong> Reading about how a blockchain works does not stick the way running a simulation does. Each chapter was built as an interactive flow, not a wall of text. This increased build time significantly but felt essential to the core value proposition.</p>
+          <p><strong>Explicitly not about investing.</strong> The crypto space blurs education with promotion. I made a deliberate choice to exclude price speculation, return expectations, and anything that reads as financial advice. It narrowed the audience but made the product more trustworthy.</p>
+        </div>
+      </div>
+      <div class="project-detail-section animate">
+        <div class="role-section-label">What I decided not to build</div>
+        <div class="role-section-body">
+          <p>A community or social layer. The instinct was to add forums, progress sharing, or cohort learning. I cut it. It would have doubled the scope and the core problem — lack of structure — did not require social features to solve. If the content worked, social could come later.</p>
+          <p>A placement test. I wanted to let users skip to the right level based on prior knowledge. It did not make the first version because the progression logic was not ready. It is the first thing I would add in a second iteration.</p>
+        </div>
+      </div>
+      <div class="project-detail-section animate">
+        <div class="role-section-label">How I'd measure success</div>
+        <div class="role-section-body">
+          <p>Chapter completion rate per level — does anyone get past chapter three, or do they drop off? Return visit rate — do people come back, or is it a one-time curiosity? Quiz scores over time — is the learning actually sticking?</p>
+          <p>The metric I'd care about most is whether someone who finishes the beginner level can explain Bitcoin to another person in plain language. That's the outcome I was designing for, and it's the hardest one to measure.</p>
         </div>
       </div>
 
       <div class="role-takeaway animate">
-        <div class="role-section-label">Reflections</div>
+        <div class="role-section-label">What I'd do differently</div>
         <div class="role-section-body" style="font-family:var(--sans);font-size:15px;font-weight:400;line-height:1.9;color:#3A3A3A">
-          The project reinforced the importance of content architecture before UI development, structured progression in educational systems, and balancing accessibility with technical depth in complex subject areas.
+          Test with real users before building 23 chapters. I built the whole thing before anyone outside of me had tried it. A smarter approach would have been to build two or three chapters, put them in front of five people who match the target user, watch where they got confused, and then build the rest. I would also add the placement test in the first version — assuming everyone starts at chapter one was a convenient simplification, not a real product decision.
         </div>
       </div>
+
     </div>
   </div>
 
-  <footer>
+    <footer>
     <div class="footer-inner">
       <div class="footer-logo">N<span>/</span>D</div>
       <ul class="footer-links">
@@ -1750,7 +1719,7 @@
     <div class="role-back" onclick="showPage('projects')">← Back to Projects</div>
 
     <div class="role-hero">
-      <div class="role-company-label animate">Independent Initiative · Next.js · TypeScript · Claude · Vercel</div>
+      <div class="role-company-label animate">Market Insight · Product Build · Next.js · TypeScript · 2026</div>
       <h1 class="role-title animate">Surfaced — SEO & GEO Audit Platform</h1>
       <div class="role-subtitle animate">Built and deployed in 3 days · Live at surfaced-nu.vercel.app</div>
     </div>
@@ -1758,99 +1727,60 @@
     <div class="role-content">
 
       <div class="project-detail-section animate">
-        <div class="role-section-label">Overview</div>
+        <div class="role-section-label">Who is the user</div>
         <div class="role-section-body">
-          <p>Surfaced is an SEO and GEO (Generative Engine Optimization) platform that helps small businesses improve both Google rankings and AI search visibility. It audits websites, identifies issues, generates implementation-ready fixes, and provides a step-by-step growth roadmap — with all code generated by Claude.</p>
+          <p>A small business owner — a tennis academy, a roofing company, an antiques dealer — who manages their own website and has heard that SEO matters but doesn't know where to start. They don't have a marketing team. They don't have time to read a 40-page crawl report. They need to know what to fix this week.</p>
+          <p>I knew this user because I had been working with them directly — managing SEO for Tenez Academy in Singapore and for freelance clients in the Netherlands and Indonesia. The frustration was the same across all of them: tools told them what was wrong, but not what to do about it.</p>
         </div>
       </div>
-
       <div class="project-detail-section animate">
-        <div class="role-section-label">The Problem</div>
+        <div class="role-section-label">The problem</div>
         <div class="role-section-body">
-          <p>Most SEO tools were built for agencies, not operators. They surface data but leave interpretation, prioritization, and execution entirely to the user. For a small business owner without a technical background, a crawl report full of issues is not a roadmap — it is a list of things to worry about.</p>
-          <p>At the same time, AI-powered search platforms — ChatGPT, Perplexity, Google AI Overviews — are becoming primary discovery channels. Most affordable tools address one or the other. Enterprise tools that address both start at $295 per month.</p>
+          <p>Every time I delegated SEO work, I had to translate the tool output into actual tasks. Screaming Frog gives you a spreadsheet of issues. Google Search Console shows you impressions and clicks. None of them tell a business owner with no technical background: here are the three things you should do this week, in this order, with these exact changes.</p>
+          <p>At the same time, AI search — ChatGPT, Perplexity, Google AI Overviews — was becoming a real discovery channel. Businesses suddenly needed to think about two different kinds of visibility. Enterprise tools that covered both started at $295 a month. Nothing affordable addressed both together.</p>
         </div>
       </div>
-
       <div class="project-detail-section animate">
-        <div class="role-section-label">Why I Built It</div>
+        <div class="role-section-label">How I validated it</div>
         <div class="role-section-body">
-          <p>While managing websites for businesses across Singapore, Indonesia, and the Netherlands, I kept running into the same problem: tools could identify issues, but rarely explained how to fix them. I often had to interpret reports, decide what mattered most, and translate technical recommendations into actionable tasks — for every major algorithm update.</p>
-          <p>I wanted to explore whether a single product could help businesses identify issues, generate fixes, and improve visibility across both SEO and AI search.</p>
+          <p>The validation was direct experience. I had managed SEO for real businesses and hit the same wall every time: the gap between here are your issues and here is what you do about them. I did not run a formal discovery process — I built the simplest version that proved whether the output format was useful.</p>
+          <p>The first version had no crawler at all. Claude estimated SEO issues based on the URL alone. That was deliberately minimal — I wanted to test whether the roadmap format resonated before investing in the harder technical work. It did, so I built the crawler.</p>
         </div>
       </div>
-
       <div class="project-detail-section animate">
-        <div class="role-section-label">What I Built</div>
-        <div>
-          <div class="impact-grid">
-            <div class="impact-item">
-              <div class="impact-number" style="font-size:18px;letter-spacing:0">SEO & GEO Audits</div>
-              <div class="impact-label">Website crawling, issue detection, AI visibility analysis, competitor benchmarking</div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-number" style="font-size:18px;letter-spacing:0">Fix Tools</div>
-              <div class="impact-label">AI-generated title tags, meta descriptions, schema markup, Open Graph — ready to copy</div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-number" style="font-size:18px;letter-spacing:0">Growth Roadmap</div>
-              <div class="impact-label">Prioritised opportunities, weekly action plan, progress tracking, PDF export</div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-number" style="font-size:18px;letter-spacing:0">13 Languages</div>
-              <div class="impact-label">English, Indonesian, Dutch, Japanese, Korean, Spanish, French, German, and more</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-detail-section animate">
-        <div class="role-section-label">Technical Challenges</div>
+        <div class="role-section-label">Key product decisions</div>
         <div class="role-section-body">
-          <p><strong>Deterministic Scoring</strong><br>
-          Early versions asked Claude to estimate the SEO score — which produced different results on every run. The fix was to calculate scores entirely from real crawl data before Claude sees anything: title tag presence, H1 coverage, meta description quality, HTTPS, schema, canonical tags, image alt text ratios, and internal link counts. Claude writes the analysis. The numbers come from the data.</p>
-          <p><strong>Parallel Crawling Within Serverless Constraints</strong><br>
-          Vercel Hobby plan functions time out at 10 seconds. Crawling pages sequentially would exceed this for any site larger than two pages. The solution was to crawl up to 9 pages in parallel using Promise.all, keeping total execution within the limit while still producing a representative site-wide audit.</p>
-          <p><strong>International Character Encoding</strong><br>
-          Auditing Dutch, Japanese, and Korean websites introduced non-ASCII characters into crawl summaries that broke JSON parsing. The fix required sanitising all crawled content before sending it to Claude, and sanitising Claude's response before parsing — stripping non-ASCII characters from both the input and the output.</p>
+          <p><strong>Fix tool as the core differentiator.</strong> Every competitor shows you what's wrong. None of them write the fix inside the product. I made the fix generation — copy-paste-ready title tags, meta descriptions, schema markup — the centrepiece of the product, not a secondary feature. That's the step where most people give up, and removing it changes the experience entirely.</p>
+          <p><strong>Deterministic scoring, not AI estimation.</strong> Early on, I asked Claude to score the SEO quality. The score changed on every run. A fluctuating number destroys credibility — users notice, and they stop trusting the whole product. I moved to scoring from real crawl data entirely: title tag presence, H1 coverage, HTTPS, schema, canonical tags, image alt ratios. Claude writes the analysis. The numbers come from the crawl.</p>
+          <p><strong>Parallel crawling to fit serverless constraints.</strong> Vercel Hobby functions time out at 10 seconds. Crawling pages sequentially fails for any real site. I crawled up to 9 pages in parallel — not ideal architecturally, but it solved the problem within the constraint without needing a paid plan.</p>
         </div>
       </div>
-
       <div class="project-detail-section animate">
-        <div class="role-section-label">Results</div>
-        <div>
-          <div class="impact-grid">
-            <div class="impact-item">
-              <div class="impact-number">3</div>
-              <div class="impact-label">Days to build and deploy</div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-number">13</div>
-              <div class="impact-label">Languages supported</div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-number">9</div>
-              <div class="impact-label">Pages crawled in parallel per audit</div>
-            </div>
-            <div class="impact-item">
-              <div class="impact-number">Live</div>
-              <div class="impact-label">Deployed on Vercel · NL, ID, SG</div>
-            </div>
-          </div>
+        <div class="role-section-label">What I decided not to build</div>
+        <div class="role-section-body">
+          <p>Ongoing monitoring and alerts. The instinct was to add weekly re-crawls and rank tracking. I cut it — it would have required a database, user accounts, and a subscription model before I knew whether the core audit was even useful. Build the audit first. If people come back wanting to track progress, that is the signal to build monitoring.</p>
+          <p>A full competitive intelligence layer. I added basic competitor comparison, but not a dashboard. The target user does not need to know everything about their competitors — they need to know what to fix on their own site. Competitor data is noise for someone who hasn't fixed their title tags yet.</p>
+        </div>
+      </div>
+      <div class="project-detail-section animate">
+        <div class="role-section-label">How I'd measure success</div>
+        <div class="role-section-body">
+          <p>Audit completion rate — do users actually run a full audit or drop off midway? Fix implementation rate — do users copy the generated fixes and use them, or ignore them? Return audit rate — does someone come back a week later to check if their changes improved the score? That last one is the clearest signal that the product delivered real value.</p>
+          <p>Revenue per user and conversion to paid would matter if this were a commercial product. Right now the honest metric is: did anyone implement a fix and see their ranking improve?</p>
         </div>
       </div>
 
       <div class="role-takeaway animate">
-        <div class="role-section-label">What I Learned</div>
+        <div class="role-section-label">What I'd do differently</div>
         <div class="role-section-body" style="font-family:var(--sans);font-size:15px;font-weight:400;line-height:1.9;color:#3A3A3A">
-          Numbers need to be consistent. If a score changes every time you run it, people stop trusting the tool. Every other tool shows you the problem and leaves you to figure out the fix. That gap is where Surfaced sits. And starting with the simplest version that proves the idea — that was the right call.
+          Get paying users before optimising the product. I spent time on 13-language support and parallel crawling before I had a single person who had paid for the product. Those were interesting technical problems, but they were not the right priority. The right priority was finding five small business owners who would pay $10 to run an audit, watching them use it, and understanding what they actually did with the output. That would have been more valuable than anything I built in week two.
         </div>
       </div>
 
     </div>
   </div>
 
-  <footer>
+    <footer>
     <div class="footer-inner">
       <div class="footer-logo">N<span>/</span>D</div>
       <ul class="footer-links">
