@@ -845,6 +845,33 @@
     line-height: 1.5;
   }
 
+  .workflow {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    border: 1px solid var(--border);
+    margin-top: 28px;
+  }
+  .workflow-step {
+    position: relative;
+    padding: 24px 18px;
+    border-right: 1px solid var(--border);
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .workflow-step:last-child { border-right: none; }
+  .workflow-step:not(:last-child)::after {
+    content: '\2192';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--cream);
+    color: var(--green);
+    padding: 2px;
+    z-index: 1;
+  }
+
   /* ════════════════════════════
      FOOTER
   ════════════════════════════ */
@@ -914,18 +941,36 @@
     .stat-divider { display: none; }
     .stat-number { font-size: 36px; }
     .about-snippet-inner { grid-template-columns: 1fr; gap: 32px; }
+    .ph-grid { grid-template-columns: 1fr; }
     .what-i-do-grid { grid-template-columns: 1fr 1fr; }
     .exp-cards { grid-template-columns: 1fr; }
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .role-grid { grid-template-columns: 1fr; gap: 24px; }
     .role-takeaway { grid-template-columns: 1fr; gap: 24px; }
     .project-detail-section { grid-template-columns: 1fr; gap: 24px; }
+    .workflow { grid-template-columns: 1fr; }
+    .workflow-step { border-right: none; border-bottom: 1px solid var(--border); padding: 18px 20px; }
+    .workflow-step:last-child { border-bottom: none; }
+    .workflow-step:not(:last-child)::after { content: '\2193'; right: 20px; top: auto; bottom: -13px; transform: none; }
     .project-card { grid-template-columns: 60px 1fr; }
     .project-arrow { display: none; }
     .freelance-item { grid-template-columns: 1fr 1fr; }
     .freelance-year { text-align: left; }
     footer { padding: 48px 24px; }
     .footer-inner { flex-direction: column; gap: 32px; align-items: flex-start; }
+  }
+  @media (max-width: 600px) {
+    .hero { padding: 72px 0 56px; }
+    .hero-headline { font-size: 42px; }
+    .nav-right { gap: 12px; }
+    .nav-right a { font-size: 11px; }
+    .nav-btn { padding: 7px 12px; }
+    .what-i-do-grid { grid-template-columns: 1fr; }
+    .ph-header { align-items: flex-start; gap: 24px; }
+    .project-card { grid-template-columns: 1fr; gap: 18px; padding: 36px 28px; }
+    .project-number { font-size: 36px; }
+    .role-hero { padding: 64px 0 52px; }
+    .role-content { padding: 56px 0; }
   }
 </style>
 </head>
@@ -955,11 +1000,11 @@
     <div class="container">
       <div class="hero-inner">
         <div class="hero-left">
-          <div class="hero-eyebrow animate">Operations & Strategy</div>
+          <div class="hero-eyebrow animate">Product · Operations · Building</div>
           <h1 class="hero-headline animate">
             Structured thinking,<br><em>operational</em><br>execution.
           </h1>
-          <p class="hero-credibility animate">Former EY Auditor &nbsp;·&nbsp; Operations Lead, Tenez Academy &nbsp;·&nbsp; SEO & GEO Consultant</p>
+          <p class="hero-credibility animate">Former EY Auditor &nbsp;·&nbsp; Operations Lead &nbsp;·&nbsp; Product Builder</p>
           <div class="hero-buttons animate">
             <button class="btn btn-primary" onclick="showPage('experience')">View Experience</button>
             <button class="btn btn-outline" onclick="showPage('about')">About Me</button>
@@ -1029,24 +1074,14 @@
       </div>
       <div class="ph-grid">
 
-        <div class="ph-card" onclick="showProject('audit')">
+        <div class="ph-card" onclick="showProject('billing')">
           <div class="ph-card-top">
-            <div class="ph-tag">Problem Framing · Workflow Design</div>
+            <div class="ph-tag">Operations · Workflow Design · Product Build</div>
             <div class="ph-arrow">→</div>
           </div>
-          <h3 class="ph-card-title">Loan Review App</h3>
-          <p class="ph-card-problem">Loan audit reviews involved a lot of manual work spread across different documents, which made the process slow and hard to trace.</p>
-          <p class="ph-card-outcome">I started looking at how parts of the workflow could be more structured, without taking judgment out of the auditor's hands.</p>
-        </div>
-
-        <div class="ph-card" onclick="showProject('crypto')">
-          <div class="ph-card-top">
-            <div class="ph-tag">User Research · Product Design</div>
-            <div class="ph-arrow">→</div>
-          </div>
-          <h3 class="ph-card-title">CryptoQuest</h3>
-          <p class="ph-card-problem">Crypto has a lot of content but not much structure. Beginners end up with fragmented knowledge and no clear sense of how things connect.</p>
-          <p class="ph-card-outcome">I built a step-by-step learning platform with interactive chapters, so there's an actual path through the material, not just more content to consume.</p>
+          <h3 class="ph-card-title">Tenez Billing System</h3>
+          <p class="ph-card-problem">Monthly billing required reconciling schedules, attendance, cancellations, weather, credits, adjustments, and previous records.</p>
+          <p class="ph-card-outcome">I translated the academy's real billing rules into a functional internal workflow, built with Codex as an AI-assisted development tool.</p>
         </div>
 
         <div class="ph-card" onclick="showProject('surfaced')">
@@ -1055,8 +1090,18 @@
             <div class="ph-arrow">→</div>
           </div>
           <h3 class="ph-card-title">Surfaced</h3>
-          <p class="ph-card-problem">Most SEO tools show you what's wrong, then leave you to figure out what to do. Small operators don't need more data. They need to know what to fix.</p>
-          <p class="ph-card-outcome">So I built something that takes the audit results and turns them into actual fixes, copy-paste ready, with a roadmap of what to tackle first.</p>
+          <p class="ph-card-problem">Most SEO tools show you what's wrong, then leave you to figure out what to do. Small operators need to know what to fix.</p>
+          <p class="ph-card-outcome">I built a product that turns audit results into implementation-ready fixes and a prioritised roadmap.</p>
+        </div>
+
+        <div class="ph-card" onclick="showProject('audit')">
+          <div class="ph-card-top">
+            <div class="ph-tag">Financial Controls · Workflow Design</div>
+            <div class="ph-arrow">→</div>
+          </div>
+          <h3 class="ph-card-title">Loan Review App</h3>
+          <p class="ph-card-problem">Loan audit reviews involved manual work across fragmented documents, making the process slow and difficult to trace.</p>
+          <p class="ph-card-outcome">I explored how to structure the workflow while preserving the judgment required in a regulated environment.</p>
         </div>
 
       </div>
@@ -1114,7 +1159,7 @@
 
     <div class="page-hero">
       <div class="section-label animate">About</div>
-      <h1 class="page-hero-title animate">Background.</h1>
+      <h1 class="page-hero-title animate">About me.</h1>
     </div>
 
     <div class="about-content">
@@ -1147,8 +1192,9 @@
           <span class="tag">Next.js</span>
           <span class="tag">TypeScript</span>
           <span class="tag">Vercel</span>
+          <span class="tag">Codex</span>
           <span class="tag">Claude</span>
-          <span class="tag">AI Tools</span>
+          <span class="tag">AI-Assisted Development</span>
         </div>
       </div>
 
@@ -1508,8 +1554,26 @@
     </div>
 
     <div class="project-cards animate">
-      <div class="project-card" onclick="showProject('audit')">
+      <div class="project-card" onclick="showProject('billing')">
         <div class="project-number">01</div>
+        <div class="project-info">
+          <div class="project-meta">Internal Product · Tenez Academy · 2026</div>
+          <div class="project-name">Tenez Billing System — Internal Billing & Operations Automation</div>
+          <div class="project-summary">A functional internal system that structures lesson reconciliation, credits, invoice generation, adjustments, and payment tracking around the academy's real operational rules.</div>
+        </div>
+        <div class="project-arrow">→</div>
+      </div>
+      <div class="project-card" onclick="showProject('surfaced')">
+        <div class="project-number">02</div>
+        <div class="project-info">
+          <div class="project-meta">Independent Initiative · 2026</div>
+          <div class="project-name">Surfaced — SEO & GEO Audit Platform</div>
+          <div class="project-summary">Built in 3 days using Next.js, TypeScript, and Claude — Surfaced audits websites, identifies SEO and AI-discovery issues, generates implementation-ready fixes, and delivers a step-by-step growth roadmap for small business operators.</div>
+        </div>
+        <div class="project-arrow">→</div>
+      </div>
+      <div class="project-card" onclick="showProject('audit')">
+        <div class="project-number">03</div>
         <div class="project-info">
           <div class="project-meta">Independent Initiative · 2026</div>
           <div class="project-name">Loan Review App — An Audit Support Tool for Financial Institutions</div>
@@ -1518,7 +1582,7 @@
         <div class="project-arrow">→</div>
       </div>
       <div class="project-card" onclick="showProject('crypto')">
-        <div class="project-number">02</div>
+        <div class="project-number">04</div>
         <div class="project-info">
           <div class="project-meta">Independent Initiative · 2026</div>
           <div class="project-name">CryptoQuest — Interactive Crypto Learning Platform</div>
@@ -1526,17 +1590,116 @@
         </div>
         <div class="project-arrow">→</div>
       </div>
-      <div class="project-card" onclick="showProject('surfaced')">
-        <div class="project-number">03</div>
-        <div class="project-info">
-          <div class="project-meta">Independent Initiative · 2026</div>
-          <div class="project-name">Surfaced — SEO & GEO Audit Platform</div>
-          <div class="project-summary">Built in 3 days using Next.js, TypeScript, and Claude — Surfaced audits websites, identifies SEO and AI-discovery issues, generates implementation-ready fixes, and delivers a step-by-step growth roadmap for small business operators.</div>
-        </div>
-        <div class="project-arrow">→</div>
-      </div>
     </div>
 
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">N<span>/</span>D</div>
+      <ul class="footer-links">
+        <li><a href="mailto:your@email.com">Email</a></li>
+        <li><a href="https://linkedin.com/in/ni-putu-vidya-dharmayanti" target="_blank">LinkedIn</a></li>
+        <li><a href="#">Resume</a></li>
+      </ul>
+      <div class="footer-location">Based in Singapore</div>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ══════════════ PROJECT: TENEZ BILLING ══════════════ -->
+<div class="page pt-nav" id="page-project-billing">
+  <div class="container">
+    <div class="role-back" onclick="showPage('projects')">← Back to Projects</div>
+
+    <div class="role-hero">
+      <div class="role-company-label animate">Internal Product · Workflow Design · AI-Assisted Development · 2026</div>
+      <h1 class="role-title animate">Tenez Billing System</h1>
+      <div class="role-subtitle animate">Internal Billing & Operations Automation</div>
+    </div>
+
+    <div class="role-content">
+      <div class="project-detail-section animate">
+        <div class="role-section-label">Context</div>
+        <div class="role-section-body">
+          <p>Tenez Academy operates using monthly prepaid billing. The amount billed is not simply scheduled lessons multiplied by a lesson rate. It needs to account for actual attendance, cancellations and cancellation policy, rain cancellations, partially completed lessons, credits, different lesson formats and rates, invoice adjustments, payments, and outstanding invoices.</p>
+          <p>Preparing invoices therefore relied on manually checking schedules, attendance information, credits, and previous billing records. Because I work directly with these operations, I experienced the problem as an internal user rather than identifying it hypothetically.</p>
+        </div>
+      </div>
+
+      <div class="project-detail-section animate">
+        <div class="role-section-label">The problem</div>
+        <div class="role-section-body">
+          <p><strong>Billing required too much manual reconciliation across information that represented different versions of what happened.</strong> A scheduled lesson does not necessarily equal a billable lesson.</p>
+          <p>A lesson may be cancelled early enough to receive credit, while a last-minute cancellation may still be chargeable. Rain may cancel a lesson entirely or interrupt it and create a prorated credit. Previous credits may affect the next invoice, and actual attendance still needs to be reconciled against the original schedule.</p>
+          <p>The product problem was not simply “generate invoices.” It was: <strong>how do we translate Tenez Academy's existing billing rules and operational exceptions into a workflow structured enough for software, without losing the flexibility required by real operations?</strong></p>
+        </div>
+      </div>
+
+      <div class="project-detail-section animate">
+        <div class="role-section-label">My role</div>
+        <div class="role-section-body">
+          <p>I identified the problem through direct operational experience, mapped the existing billing workflow, defined its business rules and exceptions, determined the information the system needed, designed the workflow, and set the MVP scope.</p>
+          <p>I built the functional system using Codex as an AI-assisted development tool, tested it against real operational scenarios, and iterated as edge cases surfaced. I owned the problem definition, business logic, product decisions, workflow, testing, and prioritisation; Codex helped me implement and refine those decisions in software.</p>
+        </div>
+      </div>
+
+      <div class="project-detail-section animate">
+        <div class="role-section-label">Product workflow</div>
+        <div class="role-section-body">
+          <p>The workflow separates what was planned from what actually happened, then carries the reconciled outcome through to billing and payment visibility.</p>
+          <div class="workflow" aria-label="Tenez billing workflow">
+            <div class="workflow-step">Scheduled Lessons</div>
+            <div class="workflow-step">Attendance / Lesson Outcome</div>
+            <div class="workflow-step">Reconciliation</div>
+            <div class="workflow-step">Credits & Adjustments</div>
+            <div class="workflow-step">Invoice Generation</div>
+            <div class="workflow-step">Payment Tracking</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-detail-section animate">
+        <div class="role-section-label">Key product decisions</div>
+        <div class="role-section-body">
+          <p><strong>Preserve the existing billing model.</strong> The goal was not to redesign the academy's commercial policies around what was easiest to code. The system needed to support how the business actually operates.</p>
+          <p><strong>Separate scheduled lessons from billable outcomes.</strong> A schedule alone cannot determine the final invoice because attendance, cancellations, weather, and credits can change the financial outcome.</p>
+          <p><strong>Make exceptions visible.</strong> Operational exceptions should not disappear inside automation. An administrator should be able to understand why a lesson, credit, or adjustment affects an invoice.</p>
+          <p><strong>Automate repetitive work, not business judgment.</strong> The system reduces repetitive reconciliation and calculation while preserving human oversight for unusual situations.</p>
+          <p><strong>Start with the core billing workflow.</strong> I kept the MVP focused on billing reconciliation, invoice generation, credits, and payment visibility rather than turning it into a full academy-management or CRM platform.</p>
+        </div>
+      </div>
+
+      <div class="project-detail-section animate">
+        <div class="role-section-label">What I built</div>
+        <div class="role-section-body">
+          <p>The functional system brings lesson reconciliation, attendance and billing reconciliation, credit calculations, invoice adjustments, PDF invoice generation, and paid/unpaid payment tracking into one structured workflow.</p>
+        </div>
+      </div>
+
+      <div class="project-detail-section animate">
+        <div class="role-section-label">Building with AI</div>
+        <div class="role-section-body">
+          <p>I used Codex to turn the requirements and workflow I had defined into a functional internal system. I treated AI as a development tool: translating requirements into implementation, debugging issues, testing business rules, and iterating as new edge cases surfaced.</p>
+          <p>The difficult part was not generating code. It was defining what the system should do when real operational scenarios did not fit a simple billing formula.</p>
+        </div>
+      </div>
+
+      <div class="project-detail-section animate">
+        <div class="role-section-label">Current status</div>
+        <div class="role-section-body">
+          <p>The result is a functional internal billing system that brings lesson reconciliation, credits, invoice generation, and payment tracking into one structured workflow. It is being tested and refined against real operational scenarios as additional edge cases emerge.</p>
+        </div>
+      </div>
+
+      <div class="role-takeaway animate">
+        <div class="role-section-label">What I learned</div>
+        <div class="role-section-body" style="font-family:var(--sans);font-size:15px;font-weight:400;line-height:1.9;color:#3A3A3A">
+          The hardest part of automating an operational workflow is often not writing the software — it is discovering and structuring the unwritten rules that people have been applying manually. Direct domain experience helped me understand why those exceptions existed, while testing made clear which repetitive steps could be automated and which unusual cases still needed to remain understandable to a human.
+        </div>
+      </div>
+    </div>
   </div>
 
   <footer>
